@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,12 +31,18 @@ namespace SQLEntityFramework
             }
             int allCount = nums.Count();
             int linqCount = nums.Count(IsEven); // returns 4
-            
+            var oddCount = nums.Count(IsOdd); //returns 5
+            var youngPeopleCount = people.Count(isYoung);
         }
 
         public static bool IsEven(int n)
         {
             return n % 2 == 0; 
+        }
+
+        public static bool IsOdd(int n)
+        {
+            return n % 2 != 0;
         }
 
         static List<Student> students = new List<Student>
@@ -54,5 +61,21 @@ namespace SQLEntityFramework
         new Student {First="Michael", Last="Tucker", ID=122, Scores= new List<int> {94, 92, 91, 91}},
         new Student {First="Suleman", Last="Miah", ID=123, Scores= new List<int> {95, 93, 92, 92}}
        };
+        public class Person
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+        static bool isYoung(Person p)
+        {
+            return p.Age < 30;
+        }
+
+        static List<Person> people = new List<Person> 
+        {
+        new Person { Name = "Cathy", Age = 40},
+        new Person { Name = "Nish", Age = 55},
+        new Person { Name = "Lee", Age = 20}
+        };
     }
 }
