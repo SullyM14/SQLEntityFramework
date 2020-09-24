@@ -19,7 +19,23 @@ namespace SQLEntityFramework
                 Console.WriteLine("{0}, {1} {2}", student.Last, student.First, student.Scores[0]);
             }
 
+            //END OF WALKTHROUGH//
 
+            List<int> nums = new List<int> { 3, 7, 1, 2, 8, 3, 0, 4, 5 };
+            var count = nums.Count;
+            int countEven = 0;
+            foreach(var n in nums)
+            {
+                if (IsEven(n)) countEven++;
+            }
+            int allCount = nums.Count();
+            int linqCount = nums.Count(IsEven); // returns 4
+            
+        }
+
+        public static bool IsEven(int n)
+        {
+            return n % 2 == 0; 
         }
 
         static List<Student> students = new List<Student>
