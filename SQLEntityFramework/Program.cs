@@ -33,6 +33,14 @@ namespace SQLEntityFramework
             int linqCount = nums.Count(IsEven); // returns 4
             var oddCount = nums.Count(IsOdd); //returns 5
             var youngPeopleCount = people.Count(isYoung);
+            int AnnoymousCount = nums.Count(delegate(int n) {return n % 2 == 0;}); // Dont use these use lambda expressions
+           
+            //lamda expressions
+            var evenLCount = nums.Count(n => n % 2 == 0); //lamda expression quicker and cleaner code
+            var youngPeopleCount2 = people.Count(p => p.Age < 30);
+            var totalAge = people.Sum(p => p.Age);
+            var oldPeopleTotalAge = people.Sum(p => p.Age >= 30 ? p.Age : 0);
+               
         }
 
         public static bool IsEven(int n)
