@@ -15,6 +15,7 @@ namespace SQLEntityFramework
             where student.Scores[0] > 90 && student.Scores[3] < 80
             orderby student.Scores[0] descending
             select student;
+
             foreach (Student student in studentQuery)
             {
                 Console.WriteLine("{0}, {1} {2}", student.Last, student.First, student.Scores[0]);
@@ -40,7 +41,21 @@ namespace SQLEntityFramework
             var youngPeopleCount2 = people.Count(p => p.Age < 30);
             var totalAge = people.Sum(p => p.Age);
             var oldPeopleTotalAge = people.Sum(p => p.Age >= 30 ? p.Age : 0);
-               
+
+            //Rewrite Walkthrough Code using method syntax
+            var s90 = students.Where(s => s.Scores[0] > 90);
+            //Query 4
+            var sLambda4 = students.GroupBy(s => s.Last[0], s => s)
+                            .OrderBy(g => g.Key);
+
+            foreach (var groupOfStudents in sLambda4)
+            {
+                Console.WriteLine(groupOfStudents.Key);
+                foreach (var student in groupOfStudents)
+                {
+                    Console.WriteLine($"{student.Last}, {student.First}");
+                }
+            }
         }
 
         public static bool IsEven(int n)
